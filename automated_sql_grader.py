@@ -204,11 +204,11 @@ def evaluate_student_queries(hw_number: int, student_file: str) -> None:
                 print(f'student query responses and correct answers do not have a matching index --- {index_error}')
 
 
-def export_correct_answers_to_csv() -> None:
-    """YOU SHOULD NOT HAVE TO RUN THIS. YOU SHOULD ALREADY HAVE ACCESS TO THE CSVs WITH THE CORRECT ANSWERS.
-
-       instead of querying the db for the correct answer every time, I am just going to keep csvs of all the
-       correct answers so the program doesn't take 10 billion years to run"""
+def export_correct_answers_to_csv(correct_answer_directory: str) -> None:
+    """instead of querying the db for the correct answer every time, I am just going to keep csvs of all the
+       correct answers so the program doesn't take 10 billion years to run
+       
+       i will just upload them at a later point"""
     for question_number, query in enumerate(SQL_1):
         run_query(query).to_csv(f'./sql_answers/sql_1_answers/{int(question_number) + 1}.csv')
     for question_number, query in enumerate(SQL_2):
