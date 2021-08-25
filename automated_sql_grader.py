@@ -158,14 +158,15 @@ def run_query(query: str, author: str = '') -> list:
 def evaluate_student_queries(hw_number: int, student_file: str) -> None:
     """gets the queries from the student's submission and compares them to the correct queries stored locally"""
 
+    # when you download submissions, the student's name is always first, followed by a _, so this checks for that
     student_name = re.search('^(.+?)_', student_file).group(0)[:-1]
 
+    # this may have to change based on how your directory
     if hw_number == 1:
         answer_filepath = './sql_answers/sql_1_answers/'
-    elif hw_number == 2:
-        answer_filepath = './sql_answers/sql_2_answers/'
     else:
-        answer_filepath = './sql_answers/sql_3_answers/'
+        answer_filepath = './sql_answers/sql_2_answers/'
+
 
     # we need to remove the first column of the csv in order to make sure the two responses will be identical
     correct_answers = [pd.read_csv(answer_filepath+path).iloc[:, 1:] for path in os.listdir(answer_filepath)]
